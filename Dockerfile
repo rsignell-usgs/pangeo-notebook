@@ -14,7 +14,7 @@ RUN $CONDA_DIR/bin/conda update conda --yes
 RUN $CONDA_DIR/bin/conda config --system --remove channels defaults
 
 RUN $CONDA_DIR/bin/conda install --yes  \
-    python=3.7 \
+    python=3.6 \
     intake::intake \
     intake::intake-xarray \
     bokeh/label/dev::bokeh \
