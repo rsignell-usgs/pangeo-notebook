@@ -1,0 +1,45 @@
+metadata:
+spec:
+  restartPolicy: Never
+  volumes:
+    - flexVolume:
+        driver: informaticslab/pysssix-flex-volume
+        options:
+          readonly: "true"
+      name: s3
+    - flexVolume:
+        driver: informaticslab/goofys-flex-volume
+        options:
+          bucket: "esip-pangeo-scratch"
+          dirMode: "0777"
+          fileMode: "0777"
+      name: scratch
+  containers:
+  - args:
+      - dask-worker
+      - --nthreads
+      - '2'
+      - --no-bokeh
+      - --memory-limit
+      - 6GB
+      - --death-timeout
+      - '60'
+    image: esip/pangeo-notebook:2019-03-28
+    name: dask-worker
+    securityContext:
+      capabilities:
+        add: [SYS_ADMIN]
+      privileged: true
+
+    volumeMounts:
+    - mountPath: /s3
+      name: s3
+    - mountPath: /scratch
+      name: scratch
+    resources:
+      limits:
+        cpu: "1.75"
+        memory: 6G
+      requests:
+        cpu: "1.75"
+        memory: 6G
