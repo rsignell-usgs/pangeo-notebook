@@ -15,14 +15,15 @@ RUN $CONDA_DIR/bin/conda update conda --yes
 
 RUN $CONDA_DIR/bin/conda install --yes  \
     python=3.6 \
-    intake::intake \
-    intake::intake-xarray \
-    bokeh/label/dev::bokeh \
-    pyviz/label/dev::holoviews \
-    pyviz/label/dev::hvplot \
-    pyviz/label/dev::geoviews \
-    pyviz/label/dev::panel \
-    pyviz/label/dev::datashader \
+    Aquaveo::xmsgrid \
+    intake \
+    intake-xarray \
+    bokeh \
+    holoviews \
+    hvplot \
+    geoviews \
+    panel \
+    datashader \
     ipywidgets>=7.4.2 \
     pandas>=0.23.4 \
     jupyterlab=0.35.1 \
@@ -47,6 +48,8 @@ RUN $CONDA_DIR/bin/conda install --yes  \
     geopandas \
     gitpython \
     gridgeo \
+    h5netcdf \
+    conda-forge/label/dev::h5py \
     ioos_tools \
     ipyleaflet \
     iris \
@@ -83,6 +86,7 @@ RUN $CONDA_DIR/bin/conda install --yes  \
     scikit-learn \
     shapely \
     siphon \
+    snakeviz \
     tensorflow \
     tensorflow-hub \
     tqdm \
@@ -100,6 +104,7 @@ RUN pip install --upgrade pip
 RUN pip install \
     python-gist \
     git+https://github.com/ericdill/depfinder.git \
+    git+https://github.com/HDFGroup/h5pyd.git \
     git+https://github.com/pyviz/EarthSim.git \
                 --upgrade --no-cache-dir \
                 --upgrade-strategy only-if-needed
